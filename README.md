@@ -24,7 +24,7 @@ To
 #define ENABLE_NEWLIB       1
 ```
 
-Then edit the file `makelib.gen` and point the paths to your newlib enabled compiler (do not use the one that comes with SGDK, it does not have newlib).
+Then edit the file `makelib.gen` and point the paths to your newlib enabled compiler (do not use the one that comes with SGDK, it does not have newlib). When done, `make -f makelib.gen` should build SGDK sources.
 
 ## Building the ROM
 
@@ -34,5 +34,5 @@ Go to this project, and edit `Makefile`. Change the paths for them to point yo y
 
 SGDK is not the most "external library friendly" development kit out there. Some improvements are being done in this direction, e.g. by enabling compilation against newlib. But it is not yet perfect. For example SGDK has a `string.h` file, so when you do a `#include <string.h>`, you end up including the one in SGDK instead of the newlib one. And as the prototypes for the functions already in newlib have been excluded from the SGDK `string.h` file, this causes a bunch of implicit declaration warnings. I might try sorting out these problems in the future, but until then, you will get a bunch of warnings when compiling and linking.
 
-Another problem is that SGDK redefines some standard types such as `int8_t`. To workaround this problem you need to `#include <stding.h>` before including any other SGDK header.
+Another problem is that SGDK redefines some standard types such as `int8_t`. To workaround this problem you need to `#include <stdint.h>` before including any other SGDK header.
 
