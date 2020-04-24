@@ -1,12 +1,12 @@
 # MegaWiFi API example compiled for SGDK
 
-This project is a modification of my [MegaWiFi API example](https://github.com/doragasu/mw-api), in order for it to build agains the popular [SGDK development kit](https://github.com/Stephane-D/SGDK). Go to the API example repository to get more information, and to browse the MegaWiFi API.
+This project is a modification of my [MegaWiFi API example](https://github.com/doragasu/mw-api), in order for it to build against the popular [SGDK development kit](https://github.com/Stephane-D/SGDK). Go to the API example repository to get more information, and to browse the MegaWiFi API.
 
 # Instructions
 
 ## Getting the toolchain
 
-You will need a m68k cross compiler with C standard library support. The most popular choice to fulfill these requirements, is GCC compiled against newlib. If you are an Archlinux (or derivative such as Manjaro) user, you can try my PKGBUILDs. You need to install (in this order) `m68k-elf-binutils`, `m68k-elf-gcc-bootstrap`, `m68k-elf-newlib` and finally `m68k-elf-gcc`. I have also a PKGBUILD for `m68k-elf-gdb` in case you need it. If you have another Linux distro, you will have to search in its package manager, or build it yourself. I might try adding instructions here when I get the time.
+You will need a m68k cross compiler with C standard library support. The most popular choice to fulfill these requirements, is GCC compiled against newlib. If you are an Archlinux (or derivative such as Manjaro) user, you can try my PKGBUILDs. You need to install (in this order) `m68k-elf-binutils`, `m68k-elf-gcc-bootstrap`, `m68k-elf-newlib` and finally `m68k-elf-gcc`. I have also a PKGBUILD for `m68k-elf-gdb` in case you need it. You can find them in the [Archlinux AUR repository](https://aur.archlinux.org/). If you have other Linux distro, you will have to search in its package manager, or build it yourself. I might try adding instructions here when I get the time.
 
 I will also try adding here a prebuilt toolchain for Windows, when I get the time.
 

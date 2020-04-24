@@ -1,8 +1,8 @@
 /************************************************************************//**
- * \brief 1985 Channel
+ * \brief MegaWiFi API example program, built against SGDK
  * \author Jesús Alonso (doragasu)
- * \date   2019
- * \defgroup 1985ch main
+ * \date   2020
+ * \defgroup mw_api_test main
  * \{
  ****************************************************************************/
 #include <stdint.h>
@@ -113,8 +113,8 @@ static void udp_normal_test(void)
 	int16_t len = sizeof(line);
 	uint8_t ch = 1;
 
-	// Make sure you are listening on the target address, e.g. with:
-	// nc -lu 12345
+	// On your PC, make sure you are listening on the target
+	// address, e.g. with: nc -lu 12345
 	println("Send to UDP 12345, waiting for reply",
 			0);
 	// Send UDP data to peer and wait for reply
