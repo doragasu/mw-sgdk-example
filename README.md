@@ -14,7 +14,7 @@ So you are a lazy (or busy) Windows user. Then this step by step guide is for yo
 
 ### Prerequisites
 
-You need java installed, and some archive manager capable of extracting 7z files [7zip is recommended](https://www.7-zip.org/). If you do not have your favorite git client installed, it is also highly recommended (but not mandatory since you can download repositories as ZIP files). Other than that, you should be ready to go.
+You need java installed, and some archive manager capable of extracting 7z files ([7zip is recommended](https://www.7-zip.org/)). If you do not have your favorite git client installed, it is also highly recommended (but not mandatory since you can download repositories as ZIP files). Other than that, you should be ready to go.
 
 ### Getting the sources and toolchain
 
