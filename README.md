@@ -4,13 +4,79 @@ This project is a modification of my [MegaWiFi API example](https://github.com/d
 
 # Instructions
 
-## Getting the toolchain
+You will need a m68k cross compiler with C standard library support. The most popular choice to fulfill these requirements, is GCC compiled against newlib. Basically what you need to do is install the compiler, build SGDK library with newlib enabled, and then build the example in this repository. I have created a tutorial for Windows users, and some guidelines for Linux users. So you have to choose your destiny.
 
-You will need a m68k cross compiler with C standard library support. The most popular choice to fulfill these requirements, is GCC compiled against newlib. If you are an Archlinux (or derivative such as Manjaro) user, you can try my PKGBUILDs. You need to install (in this order) `m68k-elf-binutils`, `m68k-elf-gcc-bootstrap`, `m68k-elf-newlib` and finally `m68k-elf-gcc`. I have also a PKGBUILD for `m68k-elf-gdb` in case you need it. You can find them in the [Archlinux AUR repository](https://aur.archlinux.org/). If you have other Linux distro, you will have to search in its package manager, or build it yourself. You can have a look to the annex at the end of this README for instructions on building the toolchain on Linux.
+![choose](img/pills.jpg)
 
-I will also try adding here a prebuilt toolchain for Windows, when I get the time.
+## Lazy Windows users
 
-## Building SGDK library
+So you are a lazy (or busy) Windows user. Then this step by step guide is for you.
+
+### Prerequisites
+
+You need java installed, and some archive manager capable of extracting 7z files [7zip is recommended](https://www.7-zip.org/). If you do not have your favorite git client installed, it is also highly recommended (but not mandatory since you can download repositories as ZIP files). Other than that, you should be ready to go.
+
+### Getting the sources and toolchain
+
+Create the folder `gendev` inside your `Documents` folder. Then go to `gendev` folder and download there [this newlib enabled m68k-elf toolchain by @PaspallasDev](win-sdk/x68k-gcc-9.3.7z). Extract it, so you have a directory `Documents\gendev\x68k`, that inside has the compiler (`bin`, `include`, `lib`, etc. directories).
+
+Now clone [SGDK](https://github.com/Stephane-D/sgdk) and [this MegaWiFi example repo](https://github.com/doragasu/mw-sgdk-example) into the `gendev` folder (or alternatively, download them as ZIP file and extract them there). You can get rid now of the 7z (and maybe ZIP) archive you downloaded, and keep the extracted files. So far your directory tree should look like this:
+
+![tree](img/tree.png)
+
+We are now ready to start building things.
+
+### Building SGDK with newlib
+
+First we have to set the proper environment. Edit [Documents\gendev\mw-sgdk\example\env.bat](env.bat). Replace the first line:
+
+```
+set "GENDEV=C:/users/doragasu/Documents/gendev"
+```
+
+And replace the path with the one in which you have installed all the stuff. If you have used the same directories I described during this guide (and have an English Windows install), you should only need to change `doragasu` with whatever your Windows user name is. When finished, save and copy the file to `Documents\gendev\SGDK\env.bat`. Also copy [Documents\gendev\mw-sgdk-example\makelib-newlib.gen](makelib-newlib.gen) to `Documents\gendev\SGDK\makelib-newlib.gen`.
+
+Now edit `Documents\gendev\SGDK\inc\config.h`, and replace:
+
+```c
+#define ENABLE_NEWLIB       0
+```
+
+with:
+
+```c
+#define ENABLE_NEWLIB       1
+```
+
+We are ready to go. Open `cmd`, and type the following commands (excepting the `>` prompt):
+
+```
+> cd Documents\gendev\SGDK
+> env
+> make -f makelib-newlib.gen
+```
+
+When build finishes, you should have a new version of SGDK library in `Documents\gendev\sgdk\lib\libmd.a`, and you should see no errors in the console output. If you see some errors, something went wrong. Make sure you have done the process exactly as described.
+
+### Building MegaWiFi example
+
+Now we can finally build the example. Open a new `cmd` window and run the following commands:
+
+```
+> cd Documents\gendev\mw-sgdk-example
+> env
+> make -f makefile.gen
+```
+
+The process should complete without errors, and you should have the ROM built into `Documents\gendev\mw-sgdk-example\out\rom.bin`.
+
+## Linux users
+
+You know great knowledge comes with great pain, and have chosen the long but wise path.
+
+For the newlib enabled cross gcc, if you are an Archlinux (or derivative such as Manjaro) user, you can try my PKGBUILDs. You need to install (in this order) `m68k-elf-binutils`, `m68k-elf-gcc-bootstrap`, `m68k-elf-newlib` and finally `m68k-elf-gcc`. I have also a PKGBUILD for `m68k-elf-gdb` in case you need it. You can find them in the [Archlinux AUR repository](https://aur.archlinux.org/). If you have other Linux distro, you will have to search in its package manager, or build it yourself. You can have a look to the annex at the end of this README for instructions on building the toolchain on Linux.
+
+### Building SGDK library
 
 Once you have your toolchain ready, clone SGDK and edit `inc/config.h`. Change the line:
 
@@ -28,7 +94,7 @@ Then edit the file `makelib.gen` and point the paths to your newlib enabled comp
 
 ## Building the ROM
 
-Go to this project, and edit `Makefile`. Change the paths for them to point yo your tools installation (including the newlib enabled compiler). Then `make` the project. If everything goes OK, you should have the project built under `out/rom.bin`.
+Go to this project, and edit [Makefile](Makefile). Change the paths for them to point yo your tools installation (including the newlib enabled compiler). Then `make` the project. If everything goes OK, you should have the project built under `out/rom.bin`.
 
 # Limitations
 

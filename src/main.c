@@ -332,7 +332,7 @@ static void init(void)
 }
 
 /// Entry point
-int main(void)
+int main()
 {
 	init();
 
