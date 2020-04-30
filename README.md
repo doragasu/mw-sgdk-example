@@ -94,7 +94,7 @@ Then edit the file `makelib.gen` and point the paths to your newlib enabled comp
 
 ## Building the ROM
 
-Go to this project, and edit [Makefile](Makefile). Change the paths for them to point yo your tools installation (including the newlib enabled compiler). Then `make` the project. If everything goes OK, you should have the project built under `out/rom.bin`.
+Go to this project, and edit [Makefile](Makefile). Change the paths for them to point to your tools installation (including the newlib enabled compiler). Then `make` the project. If everything goes OK, you should have the project built under `out/rom.bin`.
 
 # Limitations
 
