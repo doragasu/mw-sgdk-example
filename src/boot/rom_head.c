@@ -22,30 +22,22 @@ const struct
     char notes[40];                 /* Memo (40) */
     char region[16];                /* Country Support (16) */
 } rom_header = {
-#if (ENABLE_BANK_SWITCH != 0)
-    "SEGA SSF        ",
-#else
-    "SEGA MEGA DRIVE ",
-#endif
-    "(C)SGDK 2019    ",
-    "SAMPLE PROGRAM                                  ",
-    "SAMPLE PROGRAM                                  ",
+    "SEGA MEGAWIFI   ",
+    "(c)doragasu 2020",
+    "SAMPLE MEGAWIFI PROGRAM                         ",
+    "SAMPLE MEGAWIFI PROGRAM                         ",
     "GM 00000000-00",
     0x0000,
     "JD              ",
     0x00000000,
-#if (ENABLE_BANK_SWITCH != 0)
-    0x003FFFFF,
-#else
-    0x000FFFFF,
-#endif
+    0x00400000,
     0x00FF0000,
     0x00FFFFFF,
     "  ",
     0x0000,
     0x00200000,
     0x002001FF,
-    "            ",
-    "DEMONSTRATION PROGRAM                   ",
+    "MW000101,040",
+    "MEGAWIFI WITH SGDK SUPPORT              ",
     "JUE             "
 };
