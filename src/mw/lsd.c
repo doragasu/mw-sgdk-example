@@ -249,21 +249,21 @@ void lsd_init(void)
 int lsd_ch_enable(uint8_t ch)
 {
 	if (ch >= LSD_MAX_CH) {
-		return LSD_ERROR;
+		return LSD_STAT_ERROR;
 	}
 
 	d.ch_enable[ch] = TRUE;
-	return LSD_OK;
+	return LSD_STAT_COMPLETE;
 }
 
 int lsd_ch_disable(uint8_t ch)
 {
 	if (ch >= LSD_MAX_CH) {
-		return LSD_ERROR;
+		return LSD_STAT_ERROR;
 	}
 
 	d.ch_enable[ch] = FALSE;
-	return LSD_OK;
+	return LSD_STAT_COMPLETE;
 }
 
 /// \todo Should we call the send callback on errors?
@@ -305,7 +305,7 @@ enum lsd_status lsd_recv(char *buf, int16_t len, void *ctx, lsd_recv_cb recv_cb)
 	if (len >= (LSD_MAX_LEN + 1)) {
 		return LSD_STAT_ERR_FRAME_TOO_LONG;
 	}
-	
+
 	if (LSD_RECV_IDLE == d.rx.stat) {
 		d.rx.stat = LSD_RECV_STX;
 	} else if (LSD_RECV_PARTIAL == d.rx.stat) {
